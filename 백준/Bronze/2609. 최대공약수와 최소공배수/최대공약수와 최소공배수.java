@@ -1,32 +1,28 @@
 import java.io.BufferedReader;
-import java.io.IOException;
+import java.io.FileReader;
 import java.io.InputStreamReader;
+import java.util.*;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String[] numbers = br.readLine().split(" ");
-        int a = Integer.parseInt(numbers[0]);
-        int b = Integer.parseInt(numbers[1]);
+    public static void main(String[] args) throws Exception {
+//        BufferedReader reader = new BufferedReader(new FileReader("day03/BOJ2609/input.txt"));
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-        int i = 2;
-        int result1 = 1;
-        while (true) {
-            if (a % i == 0 && b % i == 0) {
-              a /= i;
-              b /= i;
-              result1 *= i;
-            } else if (a % i != 0 || b % i != 0){
-                i++;
-            }
-            if (a < i && b < i) {
-                int result2;
-                result2 = result1 * a * b;
-                System.out.println(result1);
-                System.out.println(result2);
-                return;
-            }
+        String[] input = reader.readLine().split(" ");
+        int a = Integer.parseInt(input[0]);
+        int b = Integer.parseInt(input[1]);
+        
+        int gcd = getGCD(a, b);
+        int lcm = a * b / gcd;
+
+        System.out.println(gcd);
+        System.out.println(lcm);
+    }
+
+    public static int getGCD(int num1, int num2) {
+        if (num1 % num2 == 0) {
+            return num2;
         }
-
+        return getGCD(num2, num1 % num2);
     }
 }
