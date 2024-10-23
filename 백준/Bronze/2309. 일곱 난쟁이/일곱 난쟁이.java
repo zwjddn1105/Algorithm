@@ -1,43 +1,45 @@
 import java.io.BufferedReader;
-import java.io.IOException;
+import java.io.FileReader;
 import java.io.InputStreamReader;
-import java.util.Arrays;
+import java.util.*;
 
 public class Main {
-    public static void main (String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int[] dwarfs = new int[9];
-        int[] answer = new int[7];
-        int total = 0;
+    public static void main(String[] args) throws Exception {
+//        BufferedReader reader = new BufferedReader(new FileReader("day03/BOJ2309/input.txt"));
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
+        List<Integer> lst = new ArrayList<>();
+        int total = 0;
+        
         for (int i = 0; i < 9; i++) {
-            int height = Integer.parseInt(br.readLine());
-            dwarfs[i] = height;
-            total += height;
+            int elem = Integer.parseInt(reader.readLine());
+            lst.add(elem);
+            total += elem;
         }
 
-        for (int j = 0; j < 9; j++) {
-            for (int k = j+1; k < 9; k++) {
-                int sub = total;
-                sub -= dwarfs[j];
-                sub -= dwarfs[k];
-                if (sub == 100){
-                    int idx = 0;
-                    for (int l = 0; l < 9; l++){
-                        if (l != j && l != k) {
-                            answer[idx] = dwarfs[l];
-                            idx++;
-                        }
-                    }
-                Arrays.sort(answer);
-                for (int i = 0; i < 7; i++) {
-                    System.out.println(answer[i]);
-                }
-                return;
+        Collections.sort(lst);
+
+        List<Integer> toSubtract = new ArrayList<>();
+        int gapWithTotal = total - 100;
+        int first = -1;
+        int second = -1;
+        boolean found = false;
+
+        for (int i = 0; i < 9 && !found; i++) {
+            for (int j = i + 1; j < 9; j++) {
+                if (lst.get(i) + lst.get(j) == gapWithTotal) {
+                    first = i;
+                    second = j;
+                    found = true;
+                    break;
                 }
             }
-
         }
 
+        for (int i = 0; i < 9; i++) {
+            if (i != first && i != second) {
+                System.out.println(lst.get(i));
+            }
+        }
     }
 }
