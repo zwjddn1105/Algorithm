@@ -10,3 +10,4 @@ for i in range(length):
     arr[i], arr[min_idx] = arr[min_idx], arr[i]
 
 print(arr) # [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+# 시간복잡도는 O(N**2)
