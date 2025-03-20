@@ -9,4 +9,4 @@ arr = [64, 34, 25, 12, 57, 93, 1, 123]
 
 bubbleSort(arr)
 
-print(arr)
+print(arr) # [1, 12, 25, 34, 57, 64, 93, 123]
