@@ -1,3 +1,4 @@
+# max, min 함수 이용하여 풀기
 n, m = map(int, input().split())
 
 result = 0
