@@ -24,7 +24,7 @@ def bfs(graph, start, visited):
             if not visited[i]:
                 queue.append(i)
                 visited[i] = 1
-
+# 노드 8개
 visited = [0] * 9
 
-bfs(graph, 1, visited)
+bfs(graph, 1, visited) # 1 2 3 8 7 4 5 6
