@@ -1,3 +1,4 @@
+# 일반적으로 퀵정렬보다는 느리지만 최악의 경우에도 시간복잡도 O(NlogN)
 def merge_sort(arr):
     if len(arr) <= 1:
         return arr

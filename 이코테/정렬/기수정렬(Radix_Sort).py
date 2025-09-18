@@ -12,7 +12,7 @@ def counting_sort(arr, exp):
     for i in range(1, 10):
         count[i] += count[i - 1]
 
-    # 결과 배열 만들기 (안정정렬)
+    # 결과 배열 만들기 (안정정렬, 뒤에서부터 해야 순서 안엉킴)
     i = n - 1
     while i >= 0:
         index = (arr[i] // exp) % 10
