@@ -13,7 +13,7 @@ import heapq
 import sys
 INF = int(1e9)
 n, m = map(int, sys.stdin.readline().rstrip().split())
-start = int(sys.stdin.readline().rstrip().split())
+start = int(sys.stdin.readline().rstrip())
 graph = [[] for _ in range(n+1)]
 distance = [INF]*(n+1)
 
@@ -27,7 +27,7 @@ def dijkstra(start):
     distance[start] = 0
     while q:
         dist, now = heapq.heappop(q)
-        if distance[now] < dist: # 현재 노드가 이미 처리된 적 있는 노드이면 무시
+        if distance[now] < dist: # 현재 노드가 이미 처리된 적 있는 노드이면 무시, 전체 노드의 개수 V보다 더 많은 노드가 들어갈 일이 없다.
             continue
         for i in graph[now]:
             cost = dist + i[1]
@@ -40,3 +40,26 @@ for i in range(1, n+1):
         print('INFINITY')
     else:
         print(distance[i])
+
+'''
+6 11
+1
+1 2 2
+1 3 5
+1 4 1
+2 3 3
+2 4 2
+3 2 3
+3 6 5
+4 3 3 
+4 5 1
+5 3 1
+5 6 2
+
+0
+2
+3
+1
+2
+4
+'''
